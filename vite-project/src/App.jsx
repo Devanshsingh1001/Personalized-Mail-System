@@ -42,20 +42,20 @@ const ErrorComponent = lazy(() => import('./components/common/ErrorComponent.jsx
 import SuspenseLoader from "./components/common/SuspenseLoader.jsx";
 import DataProvider from "./components/context/DataProvider.jsx";
 import routes from "./routes/routes.jsx";
-// import Main from "./pages/Main.jsx";
+import "./App.css";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      {/* Uncomment and adjust these routes as needed */}
+      <Route path='/' element={<Navigate to="/Login" />} />
+      <Route path='/Login' element={<Login />} />
+      <Route path='/Signup' element={<Signup />} />
       <Route path={routes.main.path} element={<Navigate to={`${routes.emails.path}/inbox`} />} />
       <Route path={routes.main.path} element={<routes.main.element />} >
         <Route path={`${routes.emails.path}/:type`} element={<routes.emails.element />} errorElement={<ErrorComponent />} />
         <Route path={routes.view.path} element={<routes.view.element />} errorElement={<ErrorComponent />} />
       </Route>
       <Route path={routes.invalid.path} element={<Navigate to={`${routes.emails.path}/inbox`} />} />
-      {/* <Route path='/' element={<Navigate to="/Login" />} />
-      <Route path='/Login' element={<Login />} />
-      <Route path='/Signup' element={<Signup />} /> */}
+      
     </Route>
   )
 );
